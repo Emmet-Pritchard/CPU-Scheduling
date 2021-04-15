@@ -242,7 +242,6 @@ def rr(to_rr, tq):
     curr_p = []
     up_now = []
     to_add(time, ready_q, to_rr)
-    # up_now = ready_q[0]
     while counter != len(to_rr):
         for i in range(len(to_rr)):
             if to_rr[i][1] == time and to_rr[i] not in ready_q:
