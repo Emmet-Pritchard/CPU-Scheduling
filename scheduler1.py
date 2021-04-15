@@ -8,16 +8,17 @@ import copy
 # run. I use a simple for loop and check the time against
 # the data held in fcfs[i][1] which will be the arrival
 # time. In this first for loop I am appending the completion
-# time of the processes in order to do my calculations for the
-# waiting time and turnaround time. I choose to create a list
-# that is sorted in order to match up what was shown in the
-# example output. This was sorted by the process ID. After this
-# it was time to build the Gantt Chart. This was tricky in fcfs
-# because I needed to loop through again in order to print the
-# processes and their run time. I had some fun with the formatting
-# because Python has some cool features since it is a scripting
-# language. I then did my average time calculations which were pretty
-# straight forward. This was easy since I appended all of my times
+# time of the processes in order to do my calculations for 
+# the waiting time and turnaround time. I choose to create 
+# a list that is sorted in order to match up what was shown
+# in the example output. This was sorted by the process ID. 
+# After this it was time to build the Gantt Chart. This was 
+# tricky in fcfs because I needed to loop through again in
+# order to print the processes and their run time. I had 
+# some fun with the formatting because Python has some cool 
+# features since it is a scripting language. I then did my 
+# average time calculations which were pretty straight 
+# forward. This was easy since I appended all of my times
 # to the original list in order to do my comparisons.
 
 
@@ -80,30 +81,37 @@ def fcfs(to_fcfs):
     print("")
 
 # Next was sjfp. This function was pretty fun to work with since
-# prior to this program I had struggled with preemption. I first made
-# a copy of the incoming data so that I can delete burst times as I go
-# and not worry about losing that data forever. Really I could have just
-# copied the burst times and used it in later calculations but it was easy
-# to just copy the whole list. I declare the same variables as before except
-# this time I have a counter as well as a ready_q that I will use when a
-# process gets preempted. I begin by checking to see if any processes are ready
-# at time = 0. If they are I add them to the ready_q. I then sort those by their
-# burst time since this scheduling deals with shortest jobs. I go into a while
-# loop where I check again for processes to append to the ready queue at the top
-# of each iteration. Sort again. If the ready_q contains data, then set the current
-# process to the first element in the list. Run the burst and check if it completes
-# or if another process comes along with shorter burst time. Once all processes have
-# entered the ready_q, then it is just simple execution based off of burst times from
-# there. No need to check if another process will come along. My Gantt chart building
-# method was a little different here as I am using my list of process ID's. Essentially,
-# if it is a 0, then I will print the IDLE option. If it is the end of the list, I will
-# simply format it with the element at the end of the list. If it is anything else, I will
-# use my count and i variables to keep track of where I am in the list. I also
-# account for duplicates, since I only want to know that a process is running for 3 units.
-# I don't want to see it every time. Again, I got to have a little fun with the
-# formatting that Python has to offer. I don't have a lot of exposure to Python but this
-# assignment has encouraged me to look more into it. Average time calculations are the
-# same as in fcfs.
+# prior to this program I had struggled with preemption. I first 
+# made a copy of the incoming data so that I can delete burst 
+# times as I go and not worry about losing that data forever. 
+# Really I could have just copied the burst times and used it in
+# later calculations but it was easy to just copy the whole list.
+# I declare the same variables as before except this time I have
+# a counter as well as a ready_q that I will use when a process 
+# gets preempted. I begin by checking to see if any processes 
+# are ready at time = 0. If they are I add them to the ready_q.
+# I then sort those by their burst time since this scheduling
+# deals with shortest jobs. I go into a while loop where I check 
+# again for processes to append to the ready queue at the top of 
+# each iteration. Sort again. If the ready_q contains data, then
+# set the current process to the first element in the list. Run
+# the burst and check if it completes or if another process 
+# comes along with shorter burst time. Once all processes have
+# entered the ready_q, then it is just simple execution based 
+# off of burst times from there. No need to check if another 
+# process will come along. My Gantt chart building method was a
+# little different here as I am using my list of process ID's. 
+# Essentially, if it is a 0, then I will print the IDLE option. 
+# If it is the end of the list, I will simply format it with 
+# the element at the end of the list. If it is anything else, I
+# will use my count and i variables to keep track of where I am
+# in the list. I also account for duplicates, since I only want
+# to know that a process is running for 3 units. I don't want 
+# to see it every time. Again, I got to have a little fun with 
+# the formatting that Python has to offer. I don't have a lot 
+# of exposure to Python but this assignment has encouraged me 
+# to look more into it. Average time calculations are the same 
+# as in fcfs.
 
 
 def sjfp(to_sjfp):
@@ -185,12 +193,13 @@ def sjfp(to_sjfp):
     print("Throughput:", thpt)
     print("")
 
-# to_add() is a helper function for my round robin function. This
-# function is a constant checker for new processes. It made my
-# code hard to read so I chose to break it up and just call this
-# helper instead. Essentially, if the element in to_rr is
-# at its arrival time and it is not already in the ready_q, then
-# this helper function adds it.
+# to_add() is a helper function for my round robin 
+# function. This function is a constant checker for
+# new processes. It made my code hard to read so I 
+# chose to break it up and just call this helper 
+# instead. Essentially, if the element in to_rr is
+# at its arrival time and it is not already in the 
+# ready_q, then this helper function adds it.
 
 
 def to_add(time, ready_q, to_rr):
@@ -198,25 +207,31 @@ def to_add(time, ready_q, to_rr):
         if to_rr[i][1] == time and to_rr[i] not in ready_q:
             ready_q.append(to_rr[i])
 
-# rr() was definitely the bulky function, but it was surprisingly
-# easier than sjfp and fcfs since I did most of the learning within
-# those first two functions. I again make a copy of the incoming data
-# so that I can use if for calculations later and not have to worry about
-# losing the original burst times of the processes. A lot of this function
-# was carry over from sjfp. I begin with adding any processes that arrived
-# at time = 0 to the ready_q. If the ready_q contains elements, I pop the
-# first element off of the queue and use it as the current process. Since
-# round robin is cyclical, it is important to pop the process off of the
-# ready_q or else the queue will just keep getting longer. From here, we need
-# to compare the burst time to the time quantum. If the burst time is less,
-# then the process will run until completion. If it is not, we have to run it
-# for the duration of the time quantum while always checking for any new
-# processes that might arrive in that burst. In order to add spaces for my
-# Gantt chart to recognize IDLE, if the ready_q is empty, then it appends a 0.
-# The ready_q will be empty at the end of the process though so it is important
-# to remove the trailing 0 so that the time is updated for the throughput
-# calculation. My Gantt Chart format as well as my average time calculations are
-# pulled straight from my sjfp function since I am using a similar algorithm.
+# rr() was definitely the bulky function, but it was 
+# surprisingly easier than sjfp and fcfs since I did most 
+# of the learning within those first two functions. I 
+# again make a copy of the incoming data so that I can use 
+# if for calculations later and not have to worry about
+# losing the original burst times of the processes. A lot 
+# of this function was carry over from sjfp. I begin with 
+# adding any processes that arrived at time = 0 to the 
+# ready_q. If the ready_q contains elements, I pop the
+# first element off of the queue and use it as the current
+# process. Since round robin is cyclical, it is important 
+# to pop the process off of the ready_q or else the queue
+# will just keep getting longer. From here, we need to 
+# compare the burst time to the time quantum. If the burst
+# time is less, then the process will run until completion.
+# If it is not, we have to run it for the duration of the 
+# time quantum while always checking for any new processes
+# that might arrive in that burst. In order to add spaces
+# for my Gantt chart to recognize IDLE, if the ready_q is 
+# empty, then it appends a 0. The ready_q will be empty at
+# the end of the process though so it is important to 
+# remove the trailing 0 so that the time is updated for the
+# throughput calculation. My Gantt Chart format as well as
+# my average time calculations are pulled straight from my
+# sjfp function since I am using a similar algorithm.
 
 
 def rr(to_rr, tq):
@@ -304,16 +319,17 @@ def rr(to_rr, tq):
     print("")
 
 # In main, filename is read in from the command line.
-# Through some google search, I found the way to open up a
-# file and read it in using the built in csv reader library
-# that Python has. After this, I popped the first element off
-# because that is the header containing (ProcessID, Arrival Time,
-# and Burst Time). I first sorted the list by process ID and then
-# I sorted by arrival time of the process IDs. I made a deepcopy
-# of my input for each function call because I noticed that it
-# was altered after returning from fcfs. In order to do that I
-# imported the copy library. I then called each function with its
-# own input data.
+# Through some google search, I found the way to open 
+# up a file and read it in using the built in csv reader
+# library that Python has. After this, I popped the 
+# first element off because that is the header containing
+# (ProcessID, Arrival Time, and Burst Time). I first 
+# sorted the list by process ID and then I sorted by 
+# arrival time of the process IDs. I made a deepcopy of 
+# my input for each function call because I noticed that 
+# it was altered after returning from fcfs. In order to 
+# do that I imported the copy library. I then called each
+# function with its own input data.
 
 
 if __name__ == '__main__':
