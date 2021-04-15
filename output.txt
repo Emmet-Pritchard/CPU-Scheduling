@@ -1,3 +1,6 @@
+general command line: % python scheduler.py <filename> <time quantum> 
+output produced from the command: % python scheduler.py processes.csv 4
+
 ----------------------FCFS-----------------------
   Process ID   |  Waiting Time  | Turnaround Time
       1        |       0        |       8       
