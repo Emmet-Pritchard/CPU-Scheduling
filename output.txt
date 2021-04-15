@@ -1,0 +1,58 @@
+----------------------FCFS-----------------------
+  Process ID   |  Waiting Time  | Turnaround Time
+      1        |       0        |       8       
+      2        |       0        |       5       
+      3        |       5        |       8       
+      4        |       7        |       13      
+
+Gantt Chart is:
+[  0   ]--  2   --[  5   ]
+[  5   ]--  3   --[  8   ]
+[  8   ]-- IDLE --[  9   ]
+[  9   ]--  1   --[  17  ]
+[  17  ]--  4   --[  23  ]
+
+Average Waiting Time: 3.0
+Average Turnaround Time: 8.5
+Throughput: 0.173913043478
+
+----------------------SJFP-----------------------
+  Process ID   |  Waiting Time  | Turnaround Time
+      1        |       6        |       14      
+      2        |       3        |       8       
+      3        |       0        |       3       
+      4        |       0        |       6       
+
+Gantt Chart is:
+[  0   ]--  3   --[  3   ]
+[  3   ]--  2   --[  8   ]
+[  8   ]-- IDLE --[  9   ]
+[  9   ]--  1   --[  10  ]
+[  10  ]--  4   --[  16  ]
+[  16  ]--  1   --[  23  ]
+
+Average Waiting Time: 2.25
+Average Turnaround Time: 7.75
+Throughput: 0.17391304347826086
+
+------------------ Round Robin --------------------
+  Process ID   |  Waiting Time  | Turnaround Time
+      1        |       4        |       12      
+      2        |       3        |       8       
+      3        |       4        |       7       
+      4        |       7        |       13      
+
+Gantt Chart is:
+[  0   ]--  2   --[  4   ]
+[  4   ]--  3   --[  7   ]
+[  7   ]--  2   --[  8   ]
+[  8   ]-- IDLE --[  9   ]
+[  9   ]--  1   --[  13  ]
+[  13  ]--  4   --[  17  ]
+[  17  ]--  1   --[  21  ]
+[  21  ]--  4   --[  23  ]
+
+Average Waiting Time: 4.5
+Average Turnaround Time: 10.0
+Throughput: 0.17391304347826086
+
